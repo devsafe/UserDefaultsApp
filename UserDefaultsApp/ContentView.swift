@@ -7,9 +7,18 @@
 
 import SwiftUI
 
+struct User: Codable {
+    var firstName: String
+    var lastName: String
+}
+
 struct ContentView: View {
+    @State private var tapCount = UserDefaults.standard.integer(forKey: "Tap")
     var body: some View {
-        Text("Hello, world!")
+        Button("Tap count: \(tapCount)") {
+            self.tapCount += 1
+            UserDefaults.standard.set(self.tapCount, forKey: "Tap")
+        }
             .padding()
     }
 }
